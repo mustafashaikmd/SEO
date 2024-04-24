@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUAFA</title>
+    <link rel="shortcut icon" type="image/png" href="/static/images/logo.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css' ) }}">
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <h1><img src="/static/images/logo.png" alt="Logo" class="logo">RUAFA Search Engine</h1>
+        </div>
+        <script>
+        var file_content = [];
+        </script>
+        <div class="content">
+            <table>
+                <tr><h2>Files in which the keyword "{{keyword}}" is present:</h2></tr>
+                <tr><td></td><td><b>Num</b></td><td><b>Name</b></td><td><b>Content</b></td><td><b>Online subtitles</b></td></tr>
+                <ul>
+                    <tr>{% for index, row in matches.iterrows() %}
+                        <td><li></td>
+                        <td>{{ row['num'] }} </td>
+                        <td> {{ row['name'] }} </td>
+                        <td><button id="contentBtn" class="button" onclick="myFunction(file_content[this.id])">View Content</button></td>
+                        <td><a href="https://www.opensubtitles.org/en/subtitles/{{ row['num'] }}">Check</td>
+                    </tr></li>
+                    
+                    <script>
+                        var button = document.getElementById("contentBtn");
+                        if (button) button.id = file_content.length;
+                        file_content.push("{{ row ['file_content']}}");
+                    </script>
+
+                    {% endfor %}
+                </ul>
+            </table>
+            <div id="content"></div>
+            <script>
+                function myFunction(fileContent) {
+                    // Get the content div element
+                    var contentDiv = document.getElementById('content');
+                    
+                    // Set the inner HTML of the content div to the file content
+                    contentDiv.innerHTML = "<p>" + fileContent + "</p>";
+                }
+            </script>
+            <footer>
+                <p>&copy; 2024 RUAFA(Rubi Singh & Mustafa Shaik)<img src="/static/images/logo.png" alt="Logo" class="logo">. All rights reserved.</p>
+            </footer>
+        </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUAFA</title>
+    <link rel="shortcut icon" type="image/png" href="/static/images/logo.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css' ) }}">
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <h1><img src="/static/images/logo.png" alt="Logo" class="logo">RUAFA Search Engine</h1>
+        </div>
+
+        <div class="content">
+            <form action="/search" method="post">
+                <table>
+                    <tr><td><label for="keyword" class="text">Enter Query:</label><br></td>
+                    <td><input type="text" id="keyword" name="keyword" class="textbox" required><br></td></tr>
+                    <tr><td><input type="submit" value="Search" class="button"></td></tr>
+                </table>   
+            </form>
+            <footer>
+                <p>&copy; 2024 RUAFA(Rubi Singh & Mustafa Shaik)<img src="/static/images/logo.png" alt="Logo" class="logo">. All rights reserved.</p>
+            </footer>
+        </div>
+</body>
+</html>
